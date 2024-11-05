@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block morestyle %} 
+.carousal-image {
+    height: 500px;
+    background-color: lightsteelblue;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: auto 100%;
+}
+{% endblock %}
+
+{% block head %}
+<!--Carousal to show hightlights of the store-->
+<div id="carouselExampleCaptions" class="carousel slide mt-2" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+        <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <div class="carousal-image" style="background-image: url('/static/images/Carousal slide 1.jpg')">
+            </div>
+            <div class="carousel-caption d-none d-md-block" style="color:  #117888">
+                <h1>Our clothes are thougtfully designed, offering both style and comfort to your kids</h1>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="carousal-image" style="background-image: url('/static/images/Carousal slide 2.jpg')">
+            </div>
+            <div class="carousel-caption d-none d-md-block" style="color: 	#117888">
+                <h1>We make clothes for children from newborns all the way up to teenagers</h1>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="carousal-image" style="background-image: url('/static/images/Carousal slide 3.jpg')">
+                <!-- <div class="carousal-image" style="background-image: url({{url_for('static', filename='images/Carousal slide 3.jpg')}})"> -->
+            </div>
+            <div class="carousel-caption d-none d-md-block" style="color:  #117888;">
+                <h1>We use only high quality and the most comfortable materials for all our clothes</h1>
+            </div>
+        </div>
+    </div>
+    <div>
+        <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>
+{% endblock %}
+
+{% block main %}
+<!--featured selections-->
+<div class="container mt-2 mb-2 position-relative">
+    <div class="row">
+        <div class="col-6">
+            <div class="card" style="width: 18rm;">
+                <img class="card-img-top" src="/static/images/boys clothes cover.jpg" alt="Boys clothes">
+                <div class="card-body">
+                    <h5 class="card-title">Boys Clothing</h5>
+                    <a href="/product-list-by-gender/boy" class="btn btn-info stretched-link">Shop Now</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="card" style="width: 18rm;">
+                <img class="card-img-top" src="/static/images/girls clothes cover.jpg" alt="Girls clothes">
+                <div class="card-body">
+                    <h5 class="card-title">Girls Clothing</h5>
+                    <a href="/product-list-by-gender/girl" class="btn btn-info stretched-link">Shop Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}    

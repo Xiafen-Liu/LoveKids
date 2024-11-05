@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta name="description" content="LoveKids">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>LoveKids</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link rel="icon" type="image/x-icon" href="/static/images/favicon.png">
+    <style>
+        .nav-vertical {
+            vertical-align: super;
+        }
+
+        {% block morestyle %} {% endblock %}
+
+    </style>
+    
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-info">
+            <div class="container">
+                <!-- Ecommerce store company Name & Logo-->
+                <!-- <span class="navbar-brand mb-0 h1 text-white">LoveKids</span> -->
+                <a class="navbar-brand text-warning font-weight-bold d-flex align-items-center" href="/">
+                    <img src="/static/images/favicon.png" width="50" height="50" class="d-inline-block align-top" alt="">
+                    <span class="ml-2">LoveKids</span>
+                </a>
+               
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler"
+                    aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!--content under toggler-->
+                <div class="collapse navbar-collapse" id="navbarToggler">
+                    <div class="navbar-nav mr-auto">
+                        <a class="nav-item text-light nav-link" href="/">Home</a>
+                        <!--First dropdown box to browse products by gender-->
+                        <div class="dropdown position-relative">
+                            <a class="nav-item text-light nav-link dropdown-toggle" data-toggle="dropdown"
+                                id="bookDropdown" aria-haspopup="true" aria-expanded="false" href="#">BY Gender</a>
+                            <div class="dropdown-menu" aria-labelledby="bookDropdown">
+                                <a class="dropdown-item" href="/product-list-by-gender/boy">Boys</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="/product-list-by-gender/girl">Girls</a>
+                            </div>
+                        </div>
+                        <!--Second dropdown box to browse products by size-->
+                        <div class="dropdown position-relative">
+                            <a class="nav-item text-light nav-link dropdown-toggle" data-toggle="dropdown"
+                                id="bookDropdown" aria-haspopup="true" aria-expanded="false" href="#">BY Size</a>
+                            <div class="dropdown-menu" aria-labelledby="bookDropdown">
+                                <a class="dropdown-item" href="/product-list-by-sizerange/under1">under 1 Baby Clothes</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="/product-list-by-sizerange/1-5">1-5 Little Kids Clothes</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="/product-list-by-sizerange/6-12">6-12 Older Kids Clothes</a>
+                            </div>
+                        </div>
+                        <!--Third dropdown box to browse products by category-->
+                        <div class="dropdown position-relative">
+                            <a class="nav-item text-light nav-link dropdown-toggle" data-toggle="dropdown"
+                                id="bookDropdown" aria-haspopup="true" aria-expanded="false" href="#">BY category</a>
+                            <div class="dropdown-menu" aria-labelledby="bookDropdown">
+                                <a class="dropdown-item" href="/product-list-by-category/top">Top</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="/product-list-by-category/bottom">Bottom</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="/product-list-by-category/jacket">Jacket</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="/product-list-by-category/swimwear">Swimwear</a>                              
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="/product-list-by-category/dress">Dress</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="/product-list-by-category/onesie">Onesie</a>
+                            </div>
+                        </div>
+                        <a class="nav-item text-light nav-link" href="/inquiryform">Contact Us</a>
+                    </div>
+
+                    <!--searchbox-->
+                    <form class="form-inline  my-2 my-lg-0 mr-5">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline btn-light my-2 my-sm-0" type="submit">Go</button>
+                    </form>
+                    <div class="navbar-nav mr-auto" style="font-size: 30px;">
+                        <!--cart logo with link to the cart page-->
+                        <a class="nav-item text-light nav-link" href="/shoppingcart">
+                            <i class="bi bi-cart nav-vertical"></i></a>
+                        <!--Log in logo with link to the cart page-->
+                        <a class="nav-item text-light nav-link" href="/login">
+                            <i class="bi bi-person-circle nav-vertical"></i></a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="alert alert-primary" role="alert">
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+            </div>
+        {% endif %}
+        {% endwith %} 
+        
+        {% block head %}{% endblock %}
+
+    </header>
+
+    <div class="container-fluid">
+        <main>         
+            {% block main %}{% endblock %}           
+        </main>
+    </div>
+
+    <footer>
+        <div class="text-center">
+            <p style="font-size: x-small;"></p>Copyright &copy;2024 LoveKids | ABN: 00 000 000 000</p>
+        </div>
+    </footer>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

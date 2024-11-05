@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<div class="container">
+    <div class="row">
+        <div class="col-7">
+            <img class="card-img" src="/static/images/{{product.image}}" alt="{{product.title}}">
+        </div>
+
+        <div class="col-5">
+            <div class="card my-2 ml-2">
+                <div class="card-body">
+                    <h4 class="card-title">{{product.title}}</h4>
+                    <p class="card-text mb-3">Product Id: {{product.id}}</P>
+                    <h5 class="card-text mb-3">{{"$%.2f"|format(product.cost)}}</h5>
+                    <h5 class="card-text">Color</h5>
+                    <p class="card-text mb-3">{{product.color}}</p>
+                    <h5 class="card-text">Size</h5>
+                    <p class="card-text mb-3">{{product.size}}</p>
+                    <form action="{{ url_for('main.cart') }}">
+                        <input type="hidden" id="product_id" name="product_id" value="{{ product.id }}">
+                        <button class="btn btn-primary mb-3" style="width: 120px; background-color: #17a2b8" type="submit">Add to Cart</button>
+                    </form>
+                    <p class="card-text mb-5">{{product.description}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% block morestyle %} 
+.nav-pills .nav-link.active, 
+.nav-pills .show>.nav-link 
+{
+    background-color:  #33cee6
+}
+
+#nav-header
+{
+    background-color: #17a2b8; 
+    color: white
+}
+{% endblock %}
+{% block main %}
+<div class="container mt-2 mb-2">
+    <div class="row">
+        <!--navigation bar to browse by different products categories-->
+        <div class="col-3">
+            <nav id="navbar-selections" class="navbar navbar-light bg-light width: 9rem">
+                <nav class="nav nav-pills flex-column position-relative">
+                    <span class="nav-link" id="nav-header">Selection by gender</span>
+                    <nav class="nav nav-pills flex-column">
+                        <a class="nav-link ml-3 my-1 {{ 'active' if isBoy else '' }}" href="/product-list-by-gender/boy">Boys</a>
+                        <a class="nav-link ml-3 my-1 {{ 'active' if isGirl else '' }}" href="/product-list-by-gender/girl">Girls</a>
+                    </nav>
+                    <span class="nav-link" id="nav-header">Selection by size</span>
+                    <nav class="nav nav-pills flex-column position-relative">
+                        <a class="nav-link ml-3 my-1 {{ 'active' if isUnder1 else '' }}" href="/product-list-by-sizerange/under1">under 1 baby clothes</a>
+                        <a class="nav-link ml-3 my-1 {{ 'active' if is1To5 else '' }}" href="/product-list-by-sizerange/1-5">1-5 little kids clothes</a>
+                        <a class="nav-link ml-3 my-1 {{ 'active' if is6To12 else '' }}" href="/product-list-by-sizerange/6-12">6-12 big kids clothes</a>
+                    </nav>
+                    <span class="nav-link" id="nav-header">Selection by category</span>
+                    <nav class="nav nav-pills flex-column position-relative">
+                        <a class="nav-link ml-3 my-1 {{ 'active' if isTop else '' }}" href="/product-list-by-category/top">Top</a>
+                        <a class="nav-link ml-3 my-1 {{ 'active' if isBottom else '' }}" href="/product-list-by-category/bottom">Bottom</a>
+                        <a class="nav-link ml-3 my-1 {{ 'active' if isJacket else '' }}" href="/product-list-by-category/jacket">Jacket</a>
+                        <a class="nav-link ml-3 my-1 {{ 'active' if isSwimwear else '' }}" href="/product-list-by-category/swimwear">Swimwear</a>                    
+                        <a class="nav-link ml-3 my-1 {{ 'active' if isDress else '' }}" href="/product-list-by-category/dress">Dress</a>
+                        <a class="nav-link ml-3 my-1 {{ 'active' if isOnesie else '' }}" href="/product-list-by-category/onesie">Onesie</a>
+                    </nav>
+                </nav>
+            </nav>
+        </div>
+        <!--list of products-->
+        <div class="col-9">
+
+            {% for product in productlist %}
+                {% with isNewRow = loop.index0 % 3 == 0, 
+                    isLastItemInRow = (loop.index0+1) % 3 == 0,  
+                    IsLastItemInList = (loop.index0 + 1) == productlist.length %}
+                {% if isNewRow %}
+                    <div class="row mb-2">
+                {% endif %}  
+               
+                <div class="col-4">
+                    <div class="card text-center h-100">
+                        <img class="card-img-top" src="/static/images/{{product.image}}" alt="{{product.title}}"
+                            height="300px">
+                        <div class="card-body">
+                            <h6 class="card-title">{{product.title}}<br>{{"$%.2f"|format(product.cost)}}</h6>                       
+                            <p class = "card-text">{{product.description}}</p>
+                            <form action="{{ url_for('main.cart') }}">
+                                <input type="hidden" id="product_id" name="product_id" value="{{ product.id }}">
+                                <button class="btn btn-primary mb-3" style="width: 120px; background-color: #17a2b8" type="submit">Add to Cart</button>
+                            </form>
+                            <a class="btn btn-primary" style="width: 120px; background-color: #17a2b8" href="/productdetails/{{product.id}}" role="button">View Details</a>
+                            </div>
+                    </div>
+                </div>
+                {% if isLastItemInRow or isLastItemInList %}
+                    </div>
+                {% endif %}                
+                {% endwith %}
+            {% endfor %}
+        </div>
+    </div>
+    {% endblock %}
